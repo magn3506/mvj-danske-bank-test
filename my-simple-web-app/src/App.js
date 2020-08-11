@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { validation } from "./scripts/validation";
 
 import "./App.css";
 
@@ -22,39 +23,32 @@ const App = () => {
 
   // HANDLE CHANGE
   const handleChange = (e) => {
-    validation(e.target.value);
+    let value = e.target.value;
+    validation(value, setInput, setValidate, setErrorMSG);
   };
 
-  // VALIDATION
-  const validation = (value) => {
-    // RESET VALUE WHEN DELETING NUMBERS
-    if (value.length == 0) {
-      setInput("");
-      setValidate(false);
-    }
-
-    // TJEK IF NUMBER
-    let isNumbReg = new RegExp("^([0-9]*$)");
-    if (value.match(isNumbReg)) {
-      // TJEK IF 1-10 CHARACTERS
-      let reMinMax = new RegExp("^([0-9]{1,10}$)");
-      if (!value.match(reMinMax)) {
-        setErrorMSG("min-max 1-10 characters");
-      } else {
-        setInput(value);
-        setValidate(true);
-        setErrorMSG("");
-      }
-    } else {
-      setErrorMSG("use only numbers");
-    }
+  // HANDLE SUBMIT
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Submit Data");
   };
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch(
+        "http://192.168.64.3/mvj-danske-bank-test/my-backend/person?$input$=123"
+      );
+      const data = await response.json();
+      console.log(data);
+    }
+    fetchData();
+  }, []);
 
   // APP
   return (
     <Wrapper className='App'>
       <Container>
-        <Form>
+        <Form onSubmit={(e) => handleSubmit(e)}>
           <TextCon>
             <h1>My simple app</h1>
             <p>Enter a numeric value between 1-10 characters</p>
