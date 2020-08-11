@@ -1,0 +1,21 @@
+## RewriteEngine On
+
+## NC = NO CAPS, L = STOPS CODE IF MATCH?
+## CONDITION ONLY FOR THE NEXT LINE
+#RewriteCond %{REQUEST_METHOD} GET
+#RewriteRule ^HELO$ api-get-items.php [NC,L] 
+
+
+
+## RewriteCond %{REQUEST_METHOD} GET
+## RewriteRule ^my-backend/person/([0-9]+)$ index.php?id=$1
+
+## RewriteCond %{REQUEST_METHOD} POST
+## RewriteRule ^items/([a-zA-Z0-9]+)$ api-update-item.php?id=$1 [NC,L]
+
+
+## ErrorDocument 404 /404.php
+
+
+## MAKES THE FOLDER PRIVATE ONLY INERNAL SAME SERVER SCRIPT CAN ASCCES
+## DENY FROM ALL 
