@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { validation } from "./scripts/validation";
 
 import "./App.css";
@@ -27,22 +27,45 @@ const App = () => {
     validation(value, setInput, setValidate, setErrorMSG);
   };
 
+  const fetchDataReq = () => {
+    // FIRST FETCH
+    fetch(
+      "http://192.168.64.3/mvj-danske-bank-test/my-backend/person/index.php?$input$=" +
+        input
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("Success:", result);
+        // CHAIN 2
+        fetch(
+          "http://192.168.64.3/mvj-danske-bank-test/my-backend/facility/index.php?$val1$=" +
+            result.val1
+        )
+          .then((response) => response.json())
+          .then((result) => {
+            console.log(result);
+          });
+
+        // CHAIN 2
+        fetch(
+          "http://192.168.64.3/mvj-danske-bank-test/my-backend/exposure/index.php?$val2$=" +
+            result.val2
+        )
+          .then((response) => response.json())
+          .then((result) => {
+            console.log(result);
+          });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
   // HANDLE SUBMIT
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Submit Data");
+    fetchDataReq();
   };
-
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(
-        "http://192.168.64.3/mvj-danske-bank-test/my-backend/person?$input$=123"
-      );
-      const data = await response.json();
-      console.log(data);
-    }
-    fetchData();
-  }, []);
 
   // APP
   return (
