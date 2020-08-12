@@ -1,4 +1,4 @@
-export const fetchDataChain = (input, setNewData) => {
+export const fetchDataChain = (input, setNewData, setIsModalOpen) => {
   // SORUCE: https://gomakethings.com/waiting-for-multiple-all-api-responses-to-complete-with-the-vanilla-js-promise.all-method/
 
   // CREATE EMTY DATA OBJ
@@ -47,6 +47,8 @@ export const fetchDataChain = (input, setNewData) => {
           dataRes.val5 = data[1].val5;
           // UPDATE STATE WITH NEW DATA OBJ
           setNewData(dataRes);
+          // OPEN MODAL
+          setIsModalOpen(true);
         })
         .catch(function (error) {
           // if there's an error, log it

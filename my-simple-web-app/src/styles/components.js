@@ -68,3 +68,49 @@ export const FeedBack = styled.p`
   width: 100%;
   font-size: 12px;
 `;
+
+// MODAL OVERLAY
+export const Modal = styled.p`
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.8);
+
+  .container {
+    width: 600px;
+    height: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    background-color: #043553;
+    padding: 20px;
+  }
+  .close {
+    width: 20px;
+    height: 20px;
+    color: white;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid white;
+    font-size: 14px;
+    &:hover {
+      cursor: pointer;
+      background: white;
+      color: #000;
+    }
+  }
+  .results {
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+    h2 {
+      font-size: 3em;
+    }
+    p {
+      font-size: 2em;
+    }
+  }
+`;

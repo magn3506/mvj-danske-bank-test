@@ -13,6 +13,7 @@ import {
   Input,
   Button,
   FeedBack,
+  Modal,
 } from "./styles/components";
 
 // APP
@@ -22,6 +23,7 @@ const App = () => {
   const [input, setInput] = useState("");
   const [errorMSG, setErrorMSG] = useState("");
   const [newData, setNewData] = useState();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // HANDLE CHANGE
   const handleChange = (e) => {
@@ -32,7 +34,11 @@ const App = () => {
   // HANDLE SUBMIT
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetchDataChain(input, setNewData);
+    fetchDataChain(input, setNewData, setIsModalOpen);
+  };
+
+  const handeCloseModal = (e) => {
+    setIsModalOpen(false);
   };
 
   // APP
@@ -50,9 +56,26 @@ const App = () => {
           <Button type='submit' disabled={!validate ? true : false}>
             SUBMIT
           </Button>
-          <p>{newData ? `${newData.val3 + newData.val5}` : "No data"}</p>
         </Form>
       </Container>
+      {isModalOpen && (
+        <Modal>
+          <div className='container'>
+            <div onClick={(e) => handeCloseModal(e)} className='close'>
+              X
+            </div>
+            <div className='results'>
+              <h2>Results</h2>
+              {newData && (
+                <p>
+                  {newData.val3}(val3) + {newData.val5}(val5) ={" "}
+                  {parseInt(newData.val3) + parseInt(newData.val5)}
+                </p>
+              )}
+            </div>
+          </div>
+        </Modal>
+      )}
     </Wrapper>
   );
 };
