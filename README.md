@@ -1,8 +1,8 @@
 # Front-end code exercise (students)
 
-## _by Magnus Vagn Jensen_
+## _by Magnus Vagn Jensen_ :raised_hands:
 
-This project is created as an exercise as a part the the employment proces at Danske Bank. It has been solved by Magnus Vagn Jensen.
+This project is created as an exercise as a part of the employment proces at Danske Bank. It has been solved by Magnus Vagn Jensen.
 
 ---
 
@@ -36,3 +36,5 @@ _In order to run this app, one can follow theese instructions:_
     1.  Run '_npm start_' to run dev server
 
               npm start
+
+5) I do hope it works :D
