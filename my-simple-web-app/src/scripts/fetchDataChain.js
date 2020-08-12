@@ -1,5 +1,5 @@
 export const fetchDataChain = (input, setNewData, setIsModalOpen) => {
-  // SORUCE: https://gomakethings.com/waiting-for-multiple-all-api-responses-to-complete-with-the-vanilla-js-promise.all-method/
+  // SOURCE: https://gomakethings.com/waiting-for-multiple-all-api-responses-to-complete-with-the-vanilla-js-promise.all-method/
 
   // CREATE EMTY DATA OBJ
   let dataRes = {

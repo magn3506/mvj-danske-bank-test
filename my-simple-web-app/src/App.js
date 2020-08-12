@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import "./App.css";
+
+// IMPORT FUNCTIONS
 import { validation } from "./scripts/validation";
 import { fetchDataChain } from "./scripts/fetchDataChain";
-
-import "./App.css";
 
 // IMPORT STYLED COMPONENTS
 import {
@@ -16,7 +17,6 @@ import {
   Modal,
 } from "./styles/components";
 
-// APP
 const App = () => {
   // STATE
   const [validate, setValidate] = useState(false);
@@ -37,6 +37,7 @@ const App = () => {
     fetchDataChain(input, setNewData, setIsModalOpen);
   };
 
+  // HANDLE CLOSE MODAL
   const handeCloseModal = (e) => {
     setIsModalOpen(false);
   };
@@ -52,7 +53,6 @@ const App = () => {
           </TextCon>
           <Input type='text' onChange={(e) => handleChange(e)} value={input} />
           <FeedBack>{errorMSG ? errorMSG : ""}</FeedBack>
-
           <Button type='submit' disabled={!validate ? true : false}>
             SUBMIT
           </Button>

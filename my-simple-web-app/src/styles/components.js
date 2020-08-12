@@ -1,13 +1,12 @@
 import styled from "styled-components";
 
-// STYLED COMPONENTS
 export const Wrapper = styled.main`
   width: 100vw;
   height: 100vh;
   position: relative;
 `;
 export const Container = styled.div`
-  width: 400px;
+  max-width: 400px;
   height: 400px;
   position: absolute;
   top: 50%;
@@ -15,7 +14,8 @@ export const Container = styled.div`
   transform: translate(-50%, -50%);
   border-radius: 5px;
   background-color: #f2f2f2;
-  padding: 20px;
+  padding: 10px 40px;
+  box-shadow: 5px 5px 10px rgb(0, 0, 0, 0.2);
 `;
 
 export const Form = styled.form`
@@ -24,7 +24,14 @@ export const Form = styled.form`
   flex-direction: column;
 `;
 
-export const TextCon = styled.div``;
+export const TextCon = styled.div`
+  h1 {
+    color: #003755;
+  }
+  p {
+    color: #000;
+  }
+`;
 export const Input = styled.input`
   width: 100%;
   padding: 12px 20px;
@@ -33,25 +40,35 @@ export const Input = styled.input`
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  outline: none;
 `;
 export const Button = styled.button`
   margin: 0 auto;
-  width: 250px;
-  height: 45px;
+  width: 150px;
+  height: 50px;
   border: none;
   outline: none;
   color: #fff;
   margin-top: 20px;
   font-size: 14px;
-  background-color: #5ab979;
-  text-shadow: 0 1px rgba(0, 0, 0, 0.4);
-  box-shadow: 0 3px 2px 0 #5ab979;
-  font-weight: 700;
+  font-weight: 600;
   border-radius: 5px;
+  border-radius: 1000px;
   cursor: pointer;
+  background-image: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.02) 7%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0.12) 100%
+  );
+  background-color: #009edd;
+
+  &:hover {
+    box-shadow: 1px 1px 2px rgb(0, 0, 0, 0.3);
+  }
 
   &:disabled {
-    opacity: 0.5;
+    opacity: 0.7;
     background-color: #cccccc;
     color: #666666;
     box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.1);
@@ -63,7 +80,7 @@ export const Button = styled.button`
 export const FeedBack = styled.p`
   color: red;
   min-height: 20px;
-  margin-top: -0px;
+  margin-top: 2px;
   padding-left: 2px;
   width: 100%;
   font-size: 12px;
@@ -78,7 +95,7 @@ export const Modal = styled.p`
   background: rgba(0, 0, 0, 0.8);
 
   .container {
-    width: 600px;
+    max-width: 600px;
     height: 400px;
     position: absolute;
     top: 50%;
@@ -86,7 +103,7 @@ export const Modal = styled.p`
     transform: translate(-50%, -50%);
     border-radius: 5px;
     background-color: #043553;
-    padding: 20px;
+    padding: 20px 20px;
   }
   .close {
     width: 20px;
@@ -106,6 +123,7 @@ export const Modal = styled.p`
     margin: 0 auto;
     text-align: center;
     color: white;
+    padding: 0px 45px;
     h2 {
       font-size: 3em;
     }
