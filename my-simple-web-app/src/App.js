@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { validation } from "./scripts/validation";
+import { fetchDataChain } from "./scripts/fetchDataChain";
 
 import "./App.css";
 
@@ -20,6 +21,7 @@ const App = () => {
   const [validate, setValidate] = useState(false);
   const [input, setInput] = useState("");
   const [errorMSG, setErrorMSG] = useState("");
+  const [newData, setNewData] = useState();
 
   // HANDLE CHANGE
   const handleChange = (e) => {
@@ -27,44 +29,10 @@ const App = () => {
     validation(value, setInput, setValidate, setErrorMSG);
   };
 
-  const fetchDataReq = () => {
-    // FIRST FETCH
-    fetch(
-      "http://192.168.64.3/mvj-danske-bank-test/my-backend/person/index.php?$input$=" +
-        input
-    )
-      .then((response) => response.json())
-      .then((result) => {
-        console.log("Success:", result);
-        // CHAIN 2
-        fetch(
-          "http://192.168.64.3/mvj-danske-bank-test/my-backend/facility/index.php?$val1$=" +
-            result.val1
-        )
-          .then((response) => response.json())
-          .then((result) => {
-            console.log(result);
-          });
-
-        // CHAIN 2
-        fetch(
-          "http://192.168.64.3/mvj-danske-bank-test/my-backend/exposure/index.php?$val2$=" +
-            result.val2
-        )
-          .then((response) => response.json())
-          .then((result) => {
-            console.log(result);
-          });
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  };
-
   // HANDLE SUBMIT
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetchDataReq();
+    fetchDataChain(input, setNewData);
   };
 
   // APP
@@ -82,6 +50,7 @@ const App = () => {
           <Button type='submit' disabled={!validate ? true : false}>
             SUBMIT
           </Button>
+          <p>{newData ? `${newData.val3 + newData.val5}` : "No data"}</p>
         </Form>
       </Container>
     </Wrapper>
